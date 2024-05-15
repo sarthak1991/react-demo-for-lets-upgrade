@@ -1,5 +1,5 @@
-import {useState} from "React"
-import { useEffect } from "react"
+// import {useState} from "React"
+// import { useEffect } from "react"
 
 // import Button from "./components/Button"
 // import { ThemeProvider } from "./context/themeContext"
@@ -12,56 +12,52 @@ import { useEffect } from "react"
 // import {FunctionComponent} from "./components/functionComponent"
 
 
-import InternalComponent from "./components/InternalComponent"
-import HOCWrapper from "./components/HOCWrapper"
+// import InternalComponent from "./components/InternalComponent"
+// import HOCWrapper from "./components/HOCWrapper"
 
-const ComponentWithLoadingIndicator = HOCWrapper(InternalComponent)
+// const ComponentWithLoadingIndicator = HOCWrapper(InternalComponent)
+
+import Home from "./components/Home"
+import About from "./components/About"
+import Contact from "./components/Contact"
+
+
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom"
 
 const App = () => {
 
 // const [username, setUsername] =  useState("Sarthak")
 
-const [isLoading, setIsLoading] = useState(true)
-const [data, setData] = useState(null)
+// const [isLoading, setIsLoading] = useState(true)
+// const [data, setData] = useState(null)
 
-useEffect(() => {
-  setTimeout(()=>{
-    setIsLoading(false)
-    setData("Loaded Data")
-    console.log("Loaded the data");
-  }, 2000)
-
-
-}, [])
+// useEffect(() => {
+//   setTimeout(()=>{
+//     setIsLoading(false)
+//     setData("Loaded Data")
+//     console.log("Loaded the data");
+//   }, 2000)
 
 
-  return <div className="" >
-    {/* Lets upgrade React Class, {} */}
-    {/* <div>
-    <ClassComponent>    </ClassComponent>
-    </div>
-
-    <div>
-      <FunctionComponent hoobaloo = "Batra"></FunctionComponent>
-    </div> */}
-
-{/* <FavPokemonComponent></FavPokemonComponent>
- */}
-
- {/* <FavPokemonForm></FavPokemonForm> */}
-
- {/* <ThemeProvider>
-
-<Button></Button>
- </ThemeProvider> */}
+// }, [])
 
 
+  return (
+  
+  <Router>
+  <div className="" >
+Routing Demo
 
-Demo HOCs
-
-<ComponentWithLoadingIndicator isLoading={isLoading} data={data} />
+<Routes>
+  <Route path="/" exact Component={Home} />
+  <Route path="/about" Component={About}/>
+  <Route path="/contact" Component={Contact}/>
+</Routes>
 
   </div>
+  
+  </Router>
+  )
 }
 
 export default App
