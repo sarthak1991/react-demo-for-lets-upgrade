@@ -25,7 +25,7 @@ function FavPokemonForm() {
       fetchPokemonData()
     
 
-    }, [favPokemon])
+    }, [])
     
 
 
@@ -34,7 +34,7 @@ function FavPokemonForm() {
     <div>
             <label htmlFor="">Enter Your Fav Pokemon:</label>
             <input type="text" value={favPokemon} onChange={handleInputChange} />
-            {/* <button type="button" onClick={fetchPokemonData}>Fetch my favorite pokemon</button> */}
+            <button type="button" onClick={fetchPokemonData}>Fetch my favorite pokemon</button>
 
 {
   pokemonData && (

@@ -1,11 +1,15 @@
 // import {useState} from "React"
 
-import FavPokemonForm from "./components/favPokemonForm"
+import Button from "./components/Button"
+import { ThemeProvider } from "./context/themeContext"
+
+// import FavPokemonForm from "./components/favPokemonForm"
 
 // import FavPokemonComponent from "./components/favPokemon"
 
 // import ClassComponent from "./components/classComponent"
 // import {FunctionComponent} from "./components/functionComponent"
+
 
 
 
@@ -26,7 +30,12 @@ const App = () => {
 {/* <FavPokemonComponent></FavPokemonComponent>
  */}
 
- <FavPokemonForm></FavPokemonForm>
+ {/* <FavPokemonForm></FavPokemonForm> */}
+
+ <ThemeProvider>
+
+<Button></Button>
+ </ThemeProvider>
   </div>
 }
 
