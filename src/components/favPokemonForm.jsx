@@ -1,31 +1,51 @@
-import {useState} from "react"
+import {useState, useEffect} from "react"
 
 function FavPokemonForm() {
     // pokemon State
     const [favPokemon, setFavPokemon] = useState("")
+    const [pokemonData, setPokemonData] = useState(null)
 
-    const favPokemonHandler = () => {
-        fetch(`https://pokeapi.co/api/v2/pokemon/${favPokemon}`)
+    const handleInputChange = event => {
+      setFavPokemon(event.target.value)
+    }
+
+    const fetchPokemonData = () => {
+      if (!favPokemon) return
+      fetch(`https://pokeapi.co/api/v2/pokemon/${favPokemon}`)
       .then(res=> res.json())
-      .then(data=> {
-        console.log(`The data we got is here`);
-        console.log(data);
-        setFavPokemon(data)
-      })
+      .then(data=>{
+        console.log(`weight: `);
+        console.log(data.weight);
+        setPokemonData(data)})
+      .catch(err=>console.log(`error while fetching data ${err}`))
     }
 
-    // preventDefault function comes from the event object
-    const setPokemonHandler = event => {
-        event.preventDefault()
-        setFavPokemon(event.target.value)
-    }
+
+    useEffect(() => {
+      fetchPokemonData()
+    
+
+    }, [favPokemon])
+    
+
+
 
   return (
     <div>
             <label htmlFor="">Enter Your Fav Pokemon:</label>
-            <input type="text" value={favPokemon} onChange={setPokemonHandler} />
-            <button type="button" onClick={favPokemonHandler}>Fetch my favorite pokemon</button>
+            <input type="text" value={favPokemon} onChange={handleInputChange} />
+            {/* <button type="button" onClick={fetchPokemonData}>Fetch my favorite pokemon</button> */}
 
+{
+  pokemonData && (
+    <div>
+      <h2>
+        {pokemonData.name}
+      </h2>
+      <p>Weight: {pokemonData.weight}</p>
+    </div>
+  )
+}
 
     </div>
   )
