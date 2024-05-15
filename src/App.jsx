@@ -1,7 +1,8 @@
-// import {useState} from "React"
+import {useState} from "React"
+import { useEffect } from "react"
 
-import Button from "./components/Button"
-import { ThemeProvider } from "./context/themeContext"
+// import Button from "./components/Button"
+// import { ThemeProvider } from "./context/themeContext"
 
 // import FavPokemonForm from "./components/favPokemonForm"
 
@@ -11,11 +12,28 @@ import { ThemeProvider } from "./context/themeContext"
 // import {FunctionComponent} from "./components/functionComponent"
 
 
+import InternalComponent from "./components/InternalComponent"
+import HOCWrapper from "./components/HOCWrapper"
 
+const ComponentWithLoadingIndicator = HOCWrapper(InternalComponent)
 
 const App = () => {
 
 // const [username, setUsername] =  useState("Sarthak")
+
+const [isLoading, setIsLoading] = useState(true)
+const [data, setData] = useState(null)
+
+useEffect(() => {
+  setTimeout(()=>{
+    setIsLoading(false)
+    setData("Loaded Data")
+    console.log("Loaded the data");
+  }, 2000)
+
+
+}, [])
+
 
   return <div className="" >
     {/* Lets upgrade React Class, {} */}
@@ -32,10 +50,17 @@ const App = () => {
 
  {/* <FavPokemonForm></FavPokemonForm> */}
 
- <ThemeProvider>
+ {/* <ThemeProvider>
 
 <Button></Button>
- </ThemeProvider>
+ </ThemeProvider> */}
+
+
+
+Demo HOCs
+
+<ComponentWithLoadingIndicator isLoading={isLoading} data={data} />
+
   </div>
 }
 
